@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULATOR</title>
+    <style>
+        *
+        {
+            padding: 0;
+            margin: 0;
+            background-color: gray;
+        }
+        #calci
+        {
+            border: 2px solid;
+            width: 30%;
+            height: auto;
+            margin: 20px auto;
+            background-color: white;
+        }
+        /* attribute selector*/
+        input[type='text']
+        {
+            background-color: white;
+            width: 100%;
+            height: 60px;
+            font-size: 50px;
+            margin: auto;
+           
+        }
+        h1{
+            text-align: center;
+        }
+        body{
+            font-family:'Courier New', Courier, monospace ;
+        }
+        .row
+        {
+            height: auto ;
+        }
+        button
+        {
+            height: 40px;
+            width: 22%;
+            margin: 2px;
+            font-size: 20px;
+        }
+        input[type='radio']
+        {
+            background-color: black;
+        }
+        button{
+            background-color: honeydew;
+        }
+    </style>
+    <script>
+
+        var isTurneOn = false;
+        function displayInInput(ClickedElement)
+        {
+            if(isTurneOn)
+            {
+           let clickedValue = ClickedElement.innerText;
+           console.log(clickedValue);
+           /* conacatenation values*/
+           document.getElementById('display').value+= clickedValue;
+            }
+            else{
+                alert("pls turn on the calci...")
+            }
+        }
+        function calculate()
+        {
+        let expression = document.getElementById('display').value;
+        let result = eval(expression);
+        document.getElementById('display').value= result;
+        }
+        function clearAll()
+        {
+            document.getElementById('display').value='';
+        }
+        function clearOneChar()
+        {
+             let expression = document.getElementById('display').value;
+             let size = expression.length;
+            expression = expression.substring(0,size-1);
+            document.getElementById('display').value = expression;
+        }
+        function turnon()
+        {
+            isTurneOn = true;
+            document.getElementById('display').disabled=false;
+        }        
+        function turnoff()
+        {
+            isTurneOn = false;
+            document.getElementById('display').disabled=true;
+            document.getElementById('display').value="";
+
+        } 
+
+    </script>
+</head>
+<body>
+    <h1>Calculator</h1>
+    <div id="calci">
+        <input type="text" id="display">
+        
+        <div class="row">
+            <button onclick="displayInInput(this)">1</button>
+            <button onclick="displayInInput(this)">2</button>
+           <button onclick="displayInInput(this)">3</button>
+           <button onclick="displayInInput(this)">+</button>
+
+        </div>
+        <div class="row">
+            <button onclick="displayInInput(this)">4</button>
+            <button onclick="displayInInput(this)">5</button>
+           <button onclick="displayInInput(this)">6</button>
+           <button onclick="displayInInput(this)">-</button>
+          
+        </div>
+        <div class="row">
+            <button onclick="displayInInput(this)">7</button>
+            <button onclick="displayInInput(this)">8</button>
+           <button onclick="displayInInput(this)">9</button>
+           <button onclick="displayInInput(this)">*</button>
+          
+        </div>
+        <div class="row">
+            <button onclick="clearOneChar()">c</button>
+            <button onclick="displayInInput(this)">0</button>
+           <button onclick="displayInInput(this)">.</button>
+           <button onclick="displayInInput(this)">/</button>
+        </div>
+        <div>
+            <div class="row">
+                <button onclick=" clearAll() " >cc</button>
+                <button onclick="calculate()" >=</button>
+                <input type="radio" name="turnon" onclick="turnon()"><label>ON</label>
+                <input type="radio" name="turnon" checked onclick="turnoff()"><label>OFF</label>
+            </div>
+        </div>
+       
+    </div>   
+    
+       
+</body>
+</html>
